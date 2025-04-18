@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "6tE9r6m7fLChfO1Q6zbNajkvim7RZnyMf2cjKqRXg0o=",
+  "Source": "AiTextSummarizerApi",
+  "BasePath": "_content/AiTextSummarizerApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
