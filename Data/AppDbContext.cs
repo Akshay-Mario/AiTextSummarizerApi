@@ -1,8 +1,8 @@
 
-using AiTextSummarizeApi.Models;
+using AiTextSummarizerApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AiTextSummarizeApi.Data
+namespace AiTextSummarizerApi.Data
 {
 
     public class AppDbContext : DbContext
@@ -12,5 +12,6 @@ namespace AiTextSummarizeApi.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<UserToken> UserTokens { get; set;}
     }
 }

@@ -1,4 +1,4 @@
-using AiTextSummarizeApi.Data;
+using AiTextSummarizerApi.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

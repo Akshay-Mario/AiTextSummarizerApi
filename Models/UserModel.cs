@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace AiTextSummarizeApi.Models{
+namespace AiTextSummarizerApi.Models{
     public class User {
 
         [Key]
@@ -19,5 +19,7 @@ namespace AiTextSummarizeApi.Models{
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         public bool IsActive { get; set; } = true;
+
+        public ICollection<UserToken> Tokens { get; set; } = new List<UserToken>();
     }
 }

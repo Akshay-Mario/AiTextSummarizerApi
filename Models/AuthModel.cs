@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace AiTextSummarizeApi.Models
+namespace AiTextSummarizerApi.Models
 {
     public class AuthModel
     {

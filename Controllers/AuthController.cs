@@ -1,10 +1,10 @@
 
-using AiTextSummarizeApi.Data;
-using AiTextSummarizeApi.Models;
+using AiTextSummarizerApi.Data;
+using AiTextSummarizerApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AiTextSummarizeApi.Controllers
+namespace AiTextSummarizerApi.Controllers
 {
 
     [ApiController]
