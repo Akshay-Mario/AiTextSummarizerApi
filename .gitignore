@@ -3,3 +3,5 @@ bin/Debug/net8.0/
 obj/
 **/obj/
 .howtorun
+appsettings.json
+appsettings.Development.json
