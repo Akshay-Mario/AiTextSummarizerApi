@@ -5,3 +5,4 @@ obj/
 .howtorun
 appsettings.json
 appsettings.Development.json
+obj/Debug/net8.0/
