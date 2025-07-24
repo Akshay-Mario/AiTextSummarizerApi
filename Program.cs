@@ -1,5 +1,9 @@
+using System.Text;
 using AiTextSummarizerApi.Data;
+using AiTextSummarizerApi.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,31 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     new MySqlServerVersion(new Version(9,3,0))
 ));
 
+
+
+var jwtKey = builder.Configuration["Jwt:Key"] 
+    ?? throw new InvalidOperationException("JWT key is missing in configuration");
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ClockSkew = TimeSpan.Zero // Disable the default 5 minute clock skew
+    };
+});
+
+
+// builder.Services.AddAuthorization();
+
+builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddControllers();
 
@@ -26,6 +55,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+// 👇 These are required for JWT to work
+app.UseAuthentication(); // validates token
+app.UseAuthorization();  // checks policies/roles
 
 //adds all controller having [ApiCOntroller]
 app.MapControllers();
