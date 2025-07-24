@@ -9,8 +9,8 @@ namespace AiTextSummarizerApi.Models
 
         [Required]
         public int UserId { get; set; }
-        public string Token { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string RefreshToken { get; set; } = string.Empty;
+        public DateTime ExpiryDate { get; set; } = DateTime.UtcNow;
         public User User { get; set; } = null!;
     }
 }
