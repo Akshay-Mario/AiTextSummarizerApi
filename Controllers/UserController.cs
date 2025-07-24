@@ -20,7 +20,6 @@ namespace AiTextSummarizerApi.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var email = User.FindFirst(ClaimTypes.Name)?.Value;
-
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(email))
             {
                 return Unauthorized(new
