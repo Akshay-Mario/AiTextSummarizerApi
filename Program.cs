@@ -27,6 +27,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
+    Console.WriteLine("JWT Key: " + jwtKey);
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
@@ -37,6 +38,16 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendDev", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // your Angular app URL
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // optional, only if you're sending cookies
+    });
+});
 
 // builder.Services.AddAuthorization();
 
@@ -56,7 +67,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseCors("AllowFrontendDev");
 // 👇 These are required for JWT to work
 app.UseAuthentication(); // validates token
 app.UseAuthorization();  // checks policies/roles
